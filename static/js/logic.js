@@ -7,10 +7,10 @@ var streetmap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 });
 
 var baseMaps = {
-  "Street Map": streetmap,
+  'Street Map': streetmap,
 };
 
-var myMap = L.map("map", {
+var myMap = L.map('map', {
     center: [37.09, -95.71],
     zoom: 5,
     layers:[streetmap, earthquake]
@@ -22,28 +22,28 @@ L.control.layers(baseMaps, overlays, {
 }).addTo(myMap); 
 
 var overlays = {
-  "Earthquake": earthquake,
+  'Earthquake': earthquake,
 };
 
 var legend = L.control({
-  position: "bottomright"
+  position: 'bottomright'
 });
 
 d3.json(url).then(function(data) {
     function earthquake_color(depth) {
         switch (true) {
             case depth > 90:
-              return "red";
+              return 'red';
             case depth > 70:
-              return "orangered";
+              return 'orangered';
             case depth > 50:
-              return "orange";
+              return 'orange';
             case depth > 30:
-              return "gold";
+              return 'gold';
             case depth > 10:
-              return "yellow";
+              return 'yellow';
             default:
-              return "green";
+              return 'green';
         }
     };
     function earthquake_size(magnitude) {
@@ -73,18 +73,18 @@ d3.json(url).then(function(data) {
   })
 
     var legend = L.control({
-        position: "bottomright"
+        position: 'bottomright'
     });
 
     legend.onAdd = function(map) {
-        var div = L.DomUtil.create("div", "info legend");
+        var div = L.DomUtil.create('div', 'info legend');
         var intensity =[-10,10,30,50,70,90];
-        var colors =["green","yellow","gold","orange","orangered","red"];
+        var colors =['green','yellow','gold','orange','orangered','red'];
 
         for (var i = 0; i < intensity.length; i++) {
             div.innerHTML +=
                 "<i style='background: " + colors[i] + "'></i> " +
-                intensity[i] + (intensity[i + 1] ? "&ndash;" + intensity[i + 1] + "<br>" : "+");
+                intensity[i] + (intensity[i + 1] ? '&ndash;' + intensity[i + 1] + '<br>' : '+');
         }
         console.log(div)
         return div;
